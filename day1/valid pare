@@ -1,0 +1,83 @@
+#
+# class Graph:
+#     def __init__(self,v):
+#         self.graph = [[0]*v for i in range(v)]
+#         self.dic ={"S":0,"R":1,"P":2,"K":3,"T":4,"D":5,"G":6,"M":7}
+#
+#
+#     def insert(self,s,d):
+#         row = self.dic[s]
+#         col = self.dic[d]
+#         self.graph[row][col] = 1
+#         self.graph[col][row] = 1
+#
+#
+#
+# g = Graph(7)
+# route = [("S","R"),("S","K"),("S","G"),("R","D"),("R","T"),("R","P")]
+#
+# for s,d in route:
+#     g.insert(s,d)
+#
+# for i in g.graph:
+#     print(i)
+
+
+#============================ list
+
+
+
+class Graph:
+    def __init__(self):
+        self.graph = {}
+
+    def dfs(self,start):
+        stack = [start]
+        visited = []
+
+        while stack:
+            cur = stack.pop()
+            if cur not in visited:
+                visited.append(cur)
+                stack.extend(self.graph[cur])
+        print(visited)
+
+    def bfs(self, start):
+        Queue = [start]
+        visited = []
+
+        while Queue:
+            cur = Queue.pop(0)
+            if cur not in visited:
+                visited.append(cur)
+                Queue.extend(self.graph[cur])
+        print(visited)
+
+
+
+
+    def insert(self,s,d):
+        for i in range(2):
+            if s in self.graph:
+                self.graph[s].append(d)
+            else:
+                self.graph[s]= [d]
+            s , d = d, s
+
+
+
+
+g = Graph()
+route = [("S","G"),("S","K"),("S","R"),("R","D"),("R","T"),("R","P")]
+
+for s,d in route:
+    g.insert(s,d)
+
+g.dfs("S")
+
+
+
+
+
+
+This paste expires in <1 day. Public IP access. Share whatever you see with others in seconds with Context.Terms of ServiceReport this
